@@ -1,0 +1,18 @@
+{
+    "contents" : "zips <- get_zillow_data(quote_type = \"SingleFamilyResidence\", loc_type = \"Zip\")\nzips_stats_2010to2014 <- calc_basic_data(zips, start = \"2010-01-01\", end = \"2014-01-01\")\ncolnames(zips_stats_2010to2014) <- paste(colnames(zips_stats_2010to2014), 1, sep = \".\")\nzips_stats_2014to2016 <- calc_basic_data(zips, start = \"2014-01-01\", end = \"2016-01-01\")\ncolnames(zips_stats_2014to2016) <- paste(colnames(zips_stats_2014to2016), 2, sep = \".\")\nmerged <- cbind(zips_stats_2010to2014, zips_stats_2014to2016)\ntest_mdl <- lm(mean_ann_ret.2 ~ mean_ann_ret.1 + sd_ann_ret.1 + sharpe_ratio.1, data = merged)\n\n\nsubs <- zips_stats_2014to2016[zips_stats_2014to2016$last_price.2 > 100000 & zips_stats_2014to2016$last_price.2 < 400000, ]\nhead(subs[order(subs$mean_ann_ret.2, decreasing = T), ], 30)\n",
+    "created" : 1463972584297.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2036873881",
+    "id" : "8702DD13",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
